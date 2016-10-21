@@ -1,11 +1,11 @@
 {
-  "id": "/pumrp",
+  "id": "pumrp",
   "groups": [
     {
-      "id": "/pumrp/database",
+      "id": "database",
       "apps": [
          {
-          "id": "pumrp/db",
+          "id": "db",
           "container": {
             "type": "DOCKER",
             "docker": {
@@ -27,11 +27,11 @@
         }
        ]
     },{
-      "id": "/pumrp/api",
-      "dependencies": ["/pumrp/db"],
+      "id": "api",
+      "dependencies": ["db"],
       "apps": [
          {
-          "id": "pumrp/order",
+          "id": "order",
           "container": {
             "type": "DOCKER",
             "docker": {
@@ -57,11 +57,11 @@
         }
       ]
     },{
-      "id": "/pumrp/front",
-      "dependencies": ["/pumrp/order"],
+      "id": "front",
+      "dependencies": ["order"],
       "apps": [
          {
-          "id": "pumrp/web",
+          "id": "web",
           "container": {
             "type": "DOCKER",
             "docker": {
