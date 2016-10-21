@@ -20,7 +20,7 @@
           },
           "instances": 1,
           "cpus": 1,
-          "mem": 128,
+          "mem": 512,
           "healthChecks": [],
           "labels":{
           }
@@ -78,7 +78,7 @@
           },
           "instances": 1,
           "cpus": 1,
-          "mem": 128,
+          "mem": 512,
           "healthChecks": [],
           "labels":{
             "HAPROXY_GROUP":"external",
