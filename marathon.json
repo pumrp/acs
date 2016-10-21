@@ -1,0 +1,90 @@
+{
+  "id": "/pumrp",
+  "groups": [
+    {
+      "id": "/pumrp/database",
+      "apps": [
+         {
+          "id": "pumrp/db",
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "partsunlimitedmrp/db",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 27017, "containerPort": 27017, "servicePort": 10010 },
+                { "hostPort": 27018, "containerPort": 27018, "servicePort": 10011 }
+              ],
+              "forcePullImage":true
+            }
+          },
+          "instances": 1,
+          "cpus": 1,
+          "mem": 128,
+          "healthChecks": [],
+          "labels":{
+          }
+        }
+       ]
+    },{
+      "id": "/pumrp/api",
+      "dependencies": ["/pumrp/db"],
+      "apps": [
+         {
+          "id": "pumrp/order",
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "partsunlimitedmrp/order",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 8080, "servicePort": 10001 },
+                { "hostPort": 0, "containerPort": 8081, "servicePort": 10012 }
+              ],
+              "forcePullImage":true
+            }
+          },
+          "instances": 1,
+          "cpus": 1,
+          "mem": 512,
+          "healthChecks": [],
+          "labels":{
+            "HAPROXY_GROUP":"external",
+            "HAPROXY_0_VHOST":"juacsneuroagents.northeurope.cloudapp.azure.com",
+            "HAPROXY_0_MODE":"http",
+            "HAPROXY_0_PORT":"8080"
+          }
+        }
+      ]
+    },{
+      "id": "/pumrp/front",
+      "dependencies": ["/pumrp/order"],
+      "apps": [
+         {
+          "id": "pumrp/web",
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "partsunlimitedmrp/web",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 8080, "servicePort": 10002 }
+              ],
+              "forcePullImage":true
+            }
+          },
+          "instances": 1,
+          "cpus": 1,
+          "mem": 128,
+          "healthChecks": [],
+          "labels":{
+            "HAPROXY_GROUP":"external",
+            "HAPROXY_0_VHOST":"juacsneuroagents.northeurope.cloudapp.azure.com",
+            "HAPROXY_0_MODE":"http",
+            "HAPROXY_0_PATH": "/mrp"
+          }
+        }
+      ]
+    }
+  ]
+}
