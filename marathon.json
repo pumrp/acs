@@ -46,14 +46,17 @@
           },
           "instances": 1,
           "cpus": 1,
-          "mem": 512,
+          "mem": 1024,
           "healthChecks": [],
           "labels":{
             "HAPROXY_GROUP":"external",
             "HAPROXY_0_VHOST":"juacsneuroagents.northeurope.cloudapp.azure.com",
             "HAPROXY_0_MODE":"http",
             "HAPROXY_0_PORT":"8080"
-          }
+          },
+	  "env": {
+    		"MONGO_HOST": "db.database.pumrp.marathon.mesos"
+ 	  }
         }
       ]
     },{
