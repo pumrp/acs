@@ -50,7 +50,7 @@
           "healthChecks": [],
           "labels":{
             "HAPROXY_GROUP":"external",
-            "HAPROXY_0_VHOST":"juacsneuroagents.northeurope.cloudapp.azure.com",
+            "HAPROXY_0_VHOST":"myacsjulienstrohagents.eastus.cloudapp.azure.com",
             "HAPROXY_0_MODE":"http",
             "HAPROXY_0_PORT":"8080"
           },
@@ -82,7 +82,7 @@
           "healthChecks": [],
           "labels":{
             "HAPROXY_GROUP":"external",
-            "HAPROXY_0_VHOST":"juacsneuroagents.northeurope.cloudapp.azure.com",
+            "HAPROXY_0_VHOST":"myacsjulienstrohagents.eastus.cloudapp.azure.com",
             "HAPROXY_0_MODE":"http",
             "HAPROXY_0_PATH": "/mrp"
           }
